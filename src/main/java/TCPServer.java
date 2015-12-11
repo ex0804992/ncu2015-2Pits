@@ -223,6 +223,7 @@ public class TCPServer{
                 } else {
                     msg += "NO " + item.getOwner();
                 }
+
                 System.out.println(msg);
 
             }
@@ -236,6 +237,7 @@ public class TCPServer{
                     new Runnable() {
                         @Override
                         public void run() {
+                            System.out.println("============================");
                             printTreasureState();
                         }
                     }, 0, 3, TimeUnit.SECONDS
@@ -245,7 +247,7 @@ public class TCPServer{
                 //If there is something in server's message queue, then handle it.
                 if(!serverMsgQueue.isEmpty()){
                     String msg = serverMsgQueue.remove(0);
-//                    System.out.println(msg);
+                    System.out.println(msg);
 
                     String command = msg.split(" ")[0];
                     String target = msg.split(" ")[1];

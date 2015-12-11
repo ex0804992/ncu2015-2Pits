@@ -33,7 +33,7 @@ public final class Client implements Runnable{
         treasure.add(new Item("C"));
     }
 
-    public void setClientOn() throws Exception{
+    public boolean connectServer() throws Exception{
 
         clientSocket = new Socket(serverName, PORT_NUMBER);
         outToServer = new PrintWriter(new OutputStreamWriter(clientSocket.getOutputStream()));
@@ -43,6 +43,8 @@ public final class Client implements Runnable{
 
             runClient();
         }
+
+        return false;
     }
 
     private Item findItem(String target){
@@ -141,7 +143,11 @@ public final class Client implements Runnable{
     @Override
     public void run() {
         try {
-            setClientOn();
+            if(!connectServer()){
+
+                System.out.printf("Connection fail!!!");
+
+            }
 
         }catch(Exception e){
             System.out.println(e);
